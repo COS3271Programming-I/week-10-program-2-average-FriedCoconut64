@@ -1,0 +1,50 @@
+package myMain;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.io.FileNotFoundException;
+import java.io.DataInput;
+import java.io.File;
+
+public class AverageCalculator {
+	static Scanner userinput = new Scanner(System.in);
+	//Method for calculating average
+	static double calculateAverage(List<Integer> numbers) {
+		int sum = 0;
+		for (int num : numbers) {
+			sum += num;
+		}
+		return (double) sum/numbers.size();
+	}
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		List<Integer> numbers = new ArrayList<>();
+		String choice = "y";
+		System.out.println("Welcome to Average Calculator");
+		System.out.println("You can enter up to 30 integers.");
+		while (numbers.size() < 30 && choice.equalsIgnoreCase("y")) {
+			System.out.print("Enter an integer:");//Start asking the user for info
+			while (!input.hasNextInt()) {
+				System.out.print("That's not an integer. Try again:");//Error trap
+				input.next();
+			}
+			
+			int num = input.nextInt();
+			numbers.add(num);
+			
+			if (numbers.size() < 30) {
+				System.out.print("Add another number? (y/n):");//ask for more integers
+				choice = input.next();
+				}
+			}
+		double average = calculateAverage(numbers);//Call function to calculate 
+		System.out.println("The average for your list is: " + average);
+		
+	}
+}
